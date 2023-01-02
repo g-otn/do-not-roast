@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Reset.wav-a34108f6a9c5a98c10c3576365e0eb80.sample"
+
+[deps]
+
+source_file="res://Music and Sounds/Reset.wav"
+dest_files=[ "res://.import/Reset.wav-a34108f6a9c5a98c10c3576365e0eb80.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://World/Toaster.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Platform.gd" type="Script" id=2]
+
+[node name="Platform" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Toasters" type="Node2D" parent="."]
+
+[node name="Toaster" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 32, 32 )
+
+[node name="Toaster2" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 96, 32 )
+
+[node name="Toaster3" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 160, 32 )
+
+[node name="Toaster4" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 224, 32 )
+
+[node name="Toaster5" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 288, 32 )
+
+[node name="Toaster6" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 352, 32 )
+
+[node name="Toaster7" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 416, 32 )
+
+[node name="Toaster8" parent="Toasters" instance=ExtResource( 1 )]
+position = Vector2( 480, 32 )

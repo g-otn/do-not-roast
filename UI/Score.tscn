@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/Digit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/Score.gd" type="Script" id=2]
+
+[node name="Score" type="Control"]
+script = ExtResource( 2 )
+
+[node name="Digit" parent="." instance=ExtResource( 1 )]

@@ -1,0 +1,108 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World/Grill.tscn" type="PackedScene" id=2]
+[ext_resource path="res://World/Wall.png" type="Texture" id=3]
+[ext_resource path="res://World/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://Music and Sounds/Background.wav" type="AudioStream" id=5]
+[ext_resource path="res://World/Platforms.gd" type="Script" id=6]
+[ext_resource path="res://UI/Score.tscn" type="PackedScene" id=7]
+
+[sub_resource type="SegmentShape2D" id=1]
+b = Vector2( 0, -800000 )
+
+[sub_resource type="SegmentShape2D" id=2]
+b = Vector2( 512, 0 )
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 256, 600 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 256, 600 )
+current = true
+process_mode = 0
+limit_left = 0
+limit_right = 512
+limit_bottom = 720
+drag_margin_v_enabled = true
+drag_margin_top = 0.4
+drag_margin_bottom = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource( 4 )
+
+[node name="Node" type="Node" parent="Camera2D"]
+
+[node name="Grill" parent="Camera2D/Node" instance=ExtResource( 2 )]
+
+[node name="Platforms" type="Node2D" parent="."]
+position = Vector2( 0, 256 )
+script = ExtResource( 6 )
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2( 256, 720 )
+collision_layer = 4
+collision_mask = 0
+
+[node name="WallLeft" type="CollisionShape2D" parent="Walls"]
+position = Vector2( -256, 0 )
+shape = SubResource( 1 )
+
+[node name="WallRight" type="CollisionShape2D" parent="Walls"]
+position = Vector2( 256, 0 )
+shape = SubResource( 1 )
+
+[node name="WallBottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2( -256, 0 )
+shape = SubResource( 2 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 1, 0.1 )
+
+[node name="BackgroundWall" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -24, -1.99992e+07 )
+scale = Vector2( 25, 25 )
+texture = ExtResource( 3 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 23, 800000 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Score" parent="CanvasLayer" instance=ExtResource( 7 )]
+anchor_left = 0.031
+anchor_top = 0.022
+anchor_right = 0.406
+anchor_bottom = 0.078
+margin_left = 0.127999
+margin_top = 0.159999
+margin_right = -191.872
+margin_bottom = -40.16
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_top = 0.944
+anchor_right = 1.062
+anchor_bottom = 1.011
+margin_top = -679.68
+margin_right = -543.744
+margin_bottom = -727.92
+
+[node name="BackgroundAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+autoplay = true
+
+[connection signal="jumped" from="Player" to="Camera2D" method="_on_Player_jumped"]
+[connection signal="reseted" from="Player" to="Camera2D" method="_on_Player_reseted"]
+[connection signal="reseted" from="Player" to="Platforms" method="_on_Player_reseted"]
+[connection signal="reseted" from="Player" to="CanvasLayer/Score" method="_on_Player_reseted"]
+[connection signal="body_entered" from="Camera2D/Node/Grill" to="Player" method="_on_Grill_body_entered"]
+[connection signal="hit" from="Platforms" to="Player" method="_on_Platforms_hit"]
+[connection signal="passed" from="Platforms" to="CanvasLayer/Score" method="_on_Platforms_passed"]
