@@ -4,7 +4,7 @@ Simple arcade game made with Godot for [TOY BOX JAM 4](https://itch.io/jam/toy-b
 
 Play at [itch.io](https://g-otn.itch.io/do-not-roast)
 
-![demo](https://github.com/g-otn/do-not-roast/assets/44736064/55447830-f8af-423e-b7a6-2470018a584f)
+![demo](https://github.com/g-otn/do-not-roast/assets/44736064/eb1f4bf4-6966-48f4-8536-1ed266fa1aec)
 
 ## Credits
 
